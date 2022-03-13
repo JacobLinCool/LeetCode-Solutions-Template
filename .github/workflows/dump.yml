@@ -17,17 +17,18 @@ jobs:
               run: npm i -g leetcode-dump && lcd -V
 
             - name: Dump Solutions
-              run: lcd -cd 400 # cooldown: 400ms
+              run: lcd -cd 300 # cooldown: 300 ms
               env:
                   LEETCODE_SESSION: ${{ secrets.LEETCODE_SESSION }}
 
             - name: Build Static Site
               run: lcd build
 
-            - name: Copy Workflows && .gitignore
+            - name: Copy Workflows && Git Files
               run: |
                   cp -R .github/ ./leetcode/.github/ && 
-                  cp .gitignore ./leetcode/.gitignore
+                  cp .gitignore ./leetcode/.gitignore && 
+                  cp .gitattributes ./leetcode/.gitattributes
 
             - name: Add CNAME
               run: echo "" > ./site/CNAME
