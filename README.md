@@ -7,9 +7,9 @@ Template for leetcode-dump with GitHub Action, build solution repository and web
 ### Quick Start
 
 1. Fork, or use this repository as template.
-2. Add `LEETCODE_SESSION` to GitHub Action Secret.
-3. Run **Dump** workflow.
-4. After that, enable GitHub Pages from settings.
+2. Add `LEETCODE_SESSION` to [GitHub Action Secret](../../settings/secrets/actions).
+3. Run [**Dump** workflow](../../actions/workflows/dump.yml).
+4. After that, [enable GitHub Pages from settings](../../settings/pages).
 
 > - The dumped solutions will be in `main` branch.
 > - The built website will be in `gh-pages` branch.
