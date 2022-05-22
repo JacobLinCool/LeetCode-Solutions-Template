@@ -11,13 +11,19 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Repository
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
+            
+            - name: Move Cache and Git File
+              run: |
+                  mkdir leetcode
+                  mv * .gitignore .gitattributes .*.json leetcode
+              continue-on-error: true
 
             - name: Install leetcode-dump
               run: npm i -g leetcode-dump && lcd -V
 
             - name: Dump Solutions
-              run: lcd -cd 300 # cooldown: 300 ms
+              run: lcd -l 2/1
               env:
                   LEETCODE_SESSION: ${{ secrets.LEETCODE_SESSION }}
 
