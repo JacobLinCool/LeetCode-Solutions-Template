@@ -12,7 +12,7 @@ jobs:
         steps:
             - name: Checkout Repository
               uses: actions/checkout@v3
-            
+
             - name: Move Cache and Git File
               run: |
                   mkdir leetcode
@@ -23,21 +23,18 @@ jobs:
               run: npm i -g leetcode-dump && lcd -V
 
             - name: Dump Solutions
-              run: lcd -l 2/1
+              run: lcd -l 2/1 # Rate Limit: 2 req / 1 sec
               env:
                   LEETCODE_SESSION: ${{ secrets.LEETCODE_SESSION }}
 
             - name: Build Static Site
               run: lcd build
+              # env:
+              #     CNAME: your.domain.com
 
             - name: Copy Workflows && Git Files
               run: |
-                  cp -R .github/ ./leetcode/.github/ && 
-                  cp .gitignore ./leetcode/.gitignore && 
-                  cp .gitattributes ./leetcode/.gitattributes
-
-            - name: Add CNAME
-              run: echo "" > ./site/CNAME
+                  cp -R .github/ ./leetcode/.github/
 
             - name: Deploy Dumped Solutions
               uses: peaceiris/actions-gh-pages@v3
